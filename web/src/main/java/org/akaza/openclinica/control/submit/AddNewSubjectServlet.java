@@ -729,7 +729,6 @@ public class AddNewSubjectServlet extends SecureController {
 
                 //+DR added by DataRiver (EC) 08/06/2016
                 //customize study_subject_id if study_id is in study_subject_custom_label table
-
 //                // Shaoyu Su: prevent same label ("Study Subject ID")
 //                if (fp.getString(INPUT_LABEL).equalsIgnoreCase(resword.getString("id_generated_Save_Add"))) {
 //                    synchronized (simpleLockObj) {
@@ -742,17 +741,16 @@ public class AddNewSubjectServlet extends SecureController {
 //                    }
                 if (fp.getString(INPUT_LABEL).equalsIgnoreCase(resword.getString("id_generated_Save_Add"))) {
                     synchronized (simpleLockObj) {
-                    	int studyId = currentStudy.getId();
-                    	if (getStudySubjectCustomLabelDao().getByStudyId(studyId) != null){
+                    	if (getStudySubjectCustomLabelDao().getByStudyId(parentStudyId) != null){
                     		//DataRiver custom label
-	                    	String nextCode = "" + (getStudySubjectCustomLabelDao().getByStudyId(studyId).getStudyLabelCounter() + 1);
+	                    	String nextCode = "" + (getStudySubjectCustomLabelDao().getByStudyId(parentStudyId).getStudyLabelCounter() + 1);
 	                    	//add as many zeros as needed to achieve the required fixed length (max 6 digits)
 	                    	//set label_code_length to 0 in study_subject_custom_label table if you don't want a fixed length code
-	                    	while (nextCode.length() < getStudySubjectCustomLabelDao().getByStudyId(studyId).getLabelCodeLength() && nextCode.length() <= 6){
+	                    	while (nextCode.length() < getStudySubjectCustomLabelDao().getByStudyId(parentStudyId).getLabelCodeLength() && nextCode.length() <= 6){
 	                    		nextCode = "0" + nextCode;
 	                    	} 
-	                    	String prefix = getStudySubjectCustomLabelDao().getByStudyId(studyId).getLabelPrefix() == null ? "" : parseStudySubjectlabel(getStudySubjectCustomLabelDao().getByStudyId(studyId).getLabelPrefix());
-	                    	String suffix = getStudySubjectCustomLabelDao().getByStudyId(studyId).getLabelSuffix() == null ? "" : parseStudySubjectlabel(getStudySubjectCustomLabelDao().getByStudyId(studyId).getLabelSuffix());
+	                    	String prefix = getStudySubjectCustomLabelDao().getByStudyId(parentStudyId).getLabelPrefix() == null ? "" : parseStudySubjectlabel(getStudySubjectCustomLabelDao().getByStudyId(parentStudyId).getLabelPrefix());
+	                    	String suffix = getStudySubjectCustomLabelDao().getByStudyId(parentStudyId).getLabelSuffix() == null ? "" : parseStudySubjectlabel(getStudySubjectCustomLabelDao().getByStudyId(parentStudyId).getLabelSuffix());
 	                    	String nextLabel = trimCustomLabel(prefix, nextCode, suffix);
 	                        studySubject.setLabel(nextLabel);
                     	} else {
@@ -761,7 +759,7 @@ public class AddNewSubjectServlet extends SecureController {
                           	studySubject.setLabel(nextLabel + "");
                     	}
                         studySubject = ssd.createWithoutGroup(studySubject);
-                        getStudySubjectCustomLabelDao().incrementStudyLabelCounter(studyId);
+                        getStudySubjectCustomLabelDao().incrementStudyLabelCounter(parentStudyId);
                         if (showExistingRecord && !existingSubShown) {
                             fp.addPresetValue(INPUT_LABEL, label);
                         }

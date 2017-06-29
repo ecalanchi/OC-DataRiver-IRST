@@ -316,9 +316,7 @@
            <td><A HREF="#" >
                <img src="images/bt_Calendar.gif" alt="<fmt:message key="show_calendar" bundle="${resword}"/>" title="<fmt:message key="show_calendar" bundle="${resword}"/>" border="0" id="protocolDateVerificationTrigger"/>
                <script type="text/javascript">
-               Calendar.setup({inputField  : "
-		protocolDateVerificationField", ifFormat
-		: "<fmt:message key="date_format_calender" bundle="${resformat}"/>", button: "protocolDateVerificationTrigger" });
+               Calendar.setup({inputField  : "protocolDateVerificationField", ifFormat: "<fmt:message key="date_format_calender" bundle="${resformat}"/>", button: "protocolDateVerificationTrigger" });
                </script>
 
 	</a>

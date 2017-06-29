@@ -12,20 +12,12 @@
 	var="respage_messages" />
 
 
-<c:set var="dtetmeFormat">
-	<fmt:message key="date_time_format_string" bundle="${resformat}" />
-</c:set>
+<c:set var="dtetmeFormat"><fmt:message key="date_time_format_string" bundle="${resformat}" /></c:set>
 <c:set var="search" value="'" />
 <c:set var="replace" value="\\'" />
-<c:set var="test">
-	<fmt:message key="sure_to_sign_subject1" bundle="${resword}" />
-	<fmt:message key="sure_to_sign_subject2" bundle="${resword}" />
-</c:set>
+<c:set var="test"><fmt:message key="sure_to_sign_subject1" bundle="${resword}" /><fmt:message key="sure_to_sign_subject2" bundle="${resword}" /></c:set>
 <c:set var="test1" value="${fn:replace(test,search,replace)}"></c:set>
-<c:set var="app_print_CRF_Message_at_Loading">
-	<fmt:message key="print_CRF_Message_at_Loading"
-		bundle="${respage_messages}" />
-</c:set>
+<c:set var="app_print_CRF_Message_at_Loading"><fmt:message key="print_CRF_Message_at_Loading" bundle="${respage_messages}" /></c:set>
 
 <script>
   var app_contextPath = '${pageContext.request.contextPath}';
