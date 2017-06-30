@@ -307,53 +307,38 @@ http://svn.akazaresearch.com:8080/OpenClinica-2.2/EnterDataForStudyEvent?eventId
             }
             if (TabID != currTabID) {
                 document.write('<div id="Tab' + TabID + 'NotSelected" style="display:all"><div class="tab_BG"><div class="tab_L"><div class="tab_R">');
-                document.write('<a class="tabtext" title="' + TabFullName[(TabID - 1)] + '" href=' + url + '>' + TabLabel[(TabID - 1)] + '</a></div>
-	</div>
-	</div>
-	</div>
-	'); document.write('
-	<div id="Tab' + TabID + 'Selected" style="display: none">
-		<div class="tab_BG_h">
-			<div class="tab_L_h">
-				<div class="tab_R_h">
-					<span class="tabtext">' + TabLabel[(TabID - 1)] + '</span>
-				</div>
-			</div>
-		</div>
-	</div>
-	'); document.write('
-	</td>'); } else { document.write('
-	<div id="Tab' + TabID + 'NotSelected" style="display: all">
-		<div class="tab_BG_h">
-			<div class="tab_L_h">
-				<div class="tab_R_h">
-					'); document.write('<span class="tabtext">' +
-						TabLabel[(TabID - 1)] + '</span>
-				</div>
-			</div>
-		</div>
-	</div>
-	'); document.write('
-	<div id="Tab' + TabID + 'Selected" style="display: none">
-		<div class="tab_BG_h">
-			<div class="tab_L_h">
-				<div class="tab_R_h">
-					<span class="tabtext">' + TabLabel[(TabID - 1)] + '</span>
-				</div>
-			</div>
-		</div>
-	</div>
-	'); document.write('
-	</td>'); } TabID++ } } /* function checkDataStatus() {
+                document.write('<a class="tabtext" title="' + TabFullName[(TabID - 1)] + '" href=' + url + '>' + TabLabel[(TabID - 1)] + '</a></div></div></div></div>');
+                document.write('<div id="Tab' + TabID + 'Selected" style="display:none"><div class="tab_BG_h"><div class="tab_L_h"><div class="tab_R_h"><span class="tabtext">' + TabLabel[(TabID - 1)] + '</span></div></div></div></div>');
+                document.write('</td>');
+            }
+            else {
+                document.write('<div id="Tab' + TabID + 'NotSelected" style="display:all"><div class="tab_BG_h"><div class="tab_L_h"><div class="tab_R_h">');
+                document.write('<span class="tabtext">' + TabLabel[(TabID - 1)] + '</span></div></div></div></div>');
+                document.write('<div id="Tab' + TabID + 'Selected" style="display:none"><div class="tab_BG_h"><div class="tab_L_h"><div class="tab_R_h"><span class="tabtext">' + TabLabel[(TabID - 1)] + '</span></div></div></div></div>');
+                document.write('</td>');
+            }
 
-	objImage=document.getElementById('status_top'); if (objImage != null &&
-	objImage.src.indexOf('images/icon_UnsavedData.gif')>0) { return
-	confirm('
-	<fmt:message key="you_have_unsaved_data" bundle="${resword}" />
-	'); } return true; }*/ function gotoLink() { var OptionIndex =
-	document.crfForm.sectionSelect.selectedIndex; window.location =
-	document.crfForm.sectionSelect.options[OptionIndex].value; } function
-	$(x){return document.getElementById(x);} //-->
+            TabID++
+
+        }
+    }
+    /*
+function checkDataStatus() {
+
+ objImage=document.getElementById('status_top');
+ if (objImage != null && objImage.src.indexOf('images/icon_UnsavedData.gif')>0) {
+   return confirm('<fmt:message key="you_have_unsaved_data" bundle="${resword}"/>');
+    }
+
+    return true;
+  }*/
+    function gotoLink() {
+        var OptionIndex = document.crfForm.sectionSelect.selectedIndex;
+        window.location = document.crfForm.sectionSelect.options[OptionIndex].value;
+    }
+
+ function $(x){return document.getElementById(x);}
+    //-->
 	</script>
 
 	<%-- if only one section show no arrows & section jump --%>
